@@ -18,6 +18,7 @@ class MenuController
     puts "4 - Search for an entry"
     puts "5 - Import entries from a CSV"
     puts "6 - Exit"
+    puts "7 - Extinguish Address Book - WARNING: Not recommended"
     print "Enter your selection: "
 
     selection  = gets.to_i #gets user input and changes string to integer
@@ -45,6 +46,10 @@ class MenuController
     when 6
       puts "Good-bye!"
       exit(0) #program exit without an error
+    when 7
+      system "clear"
+      delete_ALL
+      main_menu
     else #catches invalid user input like letters or other chars
       system "clear"
       puts "Sorry, that is not a valid input"
@@ -160,6 +165,11 @@ class MenuController
       puts "#{entry.name} has been deleted"
     end
 
+    def delete_ALL
+      address_book.entries.clear
+      puts "You were warned! Now it's empty Bro."
+    end
+
     def edit_entry(entry)
       print "Updated name:"
       name = gets.chomp
@@ -199,5 +209,5 @@ class MenuController
         puts entry.to_s
         search_submenu(entry)
       end
-    end 
+    end
 end
