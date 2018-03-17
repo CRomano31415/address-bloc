@@ -29,6 +29,10 @@ class AddressBook
     entries.delete_at(index)
   end
 
+  def delete_ALL
+    entries.clear
+  end
+
   def import_from_csv(file_name) #this method will import from a csv file and add entries
     csv_text = File.read(file_name) #this will read the text and store it in variable
     csv = CSV.parse(csv_text, headers: true, skip_blanks: true) #class CSV will parse

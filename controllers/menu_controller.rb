@@ -166,7 +166,7 @@ class MenuController
     end
 
     def delete_ALL
-      address_book.entries.clear
+      address_book.delete_ALL
       puts "You were warned! Now it's empty Bro."
     end
 

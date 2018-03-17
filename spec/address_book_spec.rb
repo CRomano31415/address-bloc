@@ -221,4 +221,13 @@ RSpec.describe AddressBook do
     end
   end #end of iterative  search describe
 
+  describe "#delete_ALL" do
+    it "deletes the entire addres book" do
+      book.import_from_csv("entries.csv")
+      book.delete_ALL
+      expect(book.entries.size).to eq(0)
+    end
+  end 
+
+
 end
