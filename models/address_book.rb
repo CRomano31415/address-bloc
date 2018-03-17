@@ -29,14 +29,13 @@ class AddressBook
     entries.delete_at(index)
   end
 
-  def import_from_csv(file_name)
+  def import_from_csv(file_name) #this method will import from a csv file and add entries
     csv_text = File.read(file_name) #this will read the text and store it in variable
     csv = CSV.parse(csv_text, headers: true, skip_blanks: true) #class CSV will parse
 
     csv.each do |row|  #iterate over rows
-      row_hash = row.to_hash #create a hash for each row
-      add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"]) #call add entry method with each hash key/value as the arguments
+    row_hash = row.to_hash #create a hash for each row
+    add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"]) #call add entry method with each hash key/value as the arguments
     end
   end
-
 end
