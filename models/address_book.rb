@@ -38,4 +38,36 @@ class AddressBook
     add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"]) #call add entry method with each hash key/value as the arguments
     end
   end
+
+  def binary_search(name)
+    #define two variables that will define our range
+    lower = 0
+    upper = entries.length - 1
+
+    while lower <= upper #basically not nil, has to have length of 1 at least
+      mid = (lower + upper)/2 #hold the median -- ruby will truncate decimals
+      mid_name = entries[mid].name #hold the median name entry
+
+      #this whole if statement basically grabs the entry and keeps count on how far it is from the middle, until it gets to the middle
+      if name == mid_name #if the loop is on the median, == case sensitive
+        return entries[mid] #return it, we found it!
+      elsif name < mid_name #if the name comes in before the median
+        upper = mid - 1 #we change the value of upper so we eliminate the entire upper group
+      elsif name > mid_name #if name comes in after the median
+        lower = mid + 1 #we change the value of lower to we eliminate the entire lower group
+      end
+    end
+    return nil
+  end
+
+  def iterative_search(name)
+    #this one is just going to loop one by one
+    entries.each do |entry|
+      if entry.name == name
+        return entry #return it, we found it!
+      end
+    end
+    return nil
+  end
+
 end
